@@ -26,13 +26,28 @@
     --aqua2: #8ec07c;
     --orange1: #d65d0e;
     --orange2: #fe8019;
+
+    --background-color: var(--bg0-h);
+    /* --background-color: #FF00;     */
+    --text-color: var(--aqua2);
+
+    --weather-background-color: var(--orange1);
+    --weather-text-color: var(--fg1);
+    --weather-text-accent-color: var(--fg1);
+    --weather-sun-color: var(--yellow1);
+
+}
+
+body {
+    background-color: var(--background-color);
     font-family: monospace;
-    color: var(--bg0);
+    color: var(--text-color);
     text-shadow: 0px 0px 3px #af8023;
 }
 
+
 a {
-    color: var(--bg0);
+    color: var(--text-color);
 }
 
 #center-piece {
@@ -53,8 +68,10 @@ a {
 
 #aurora-panel {
     grid-area: aurora-panel;
+    outline-color: #F00;
 }
 
 #weather-panel {
     grid-area: weather-panel;
+    max-width: 450px;
 }
