@@ -82,6 +82,8 @@ function quantize(imageData, palette) {
 
     return imageData;
 }
+let auroraImg;
+let auroraCanvas;
 
 window.onload = function () {
     const palette = [
@@ -113,18 +115,37 @@ window.onload = function () {
         { r: 214, g: 93, b: 14 },
         { r: 254, g: 128, b: 25 }
     ];
-    const image = document.getElementById('aurora-img');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+    auroraImg = document.getElementById('aurora-img');
+    auroraCanvas = document.createElement('canvas');
+    const ctx = auroraCanvas.getContext('2d');
+    auroraCanvas.onmouseenter = showOriginalAuroraForecast;
+    auroraImg.onmouseout = showPosterizedAuroraForecast;
+    // auroraCanvas.onmouseout = auroraImgOver;
 
-    canvas.width = 800;
-    canvas.height = 800;
-    ctx.drawImage(image, 0, 0);
-    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    auroraCanvas.width = 800;
+    auroraCanvas.height = 800;
+    ctx.drawImage(auroraImg, 0, 0);
+    let imageData = ctx.getImageData(0, 0, auroraCanvas.width, auroraCanvas.height);
 
     quantize(imageData, palette);
 
-    image.parentNode.replaceChild(canvas, image);
+    auroraImg.parentNode.replaceChild(auroraCanvas, auroraImg);
     ctx.putImageData(imageData, 0, 0);
 
 };
+
+
+function showOriginalAuroraForecast(element) {
+    // print('hi');
+    console.log('hi');
+    const p = document.getElementById('aurora-display');
+    p.replaceChildren(auroraImg)
+    // auroraCanvas.parentNode.replaceChild(auroraImg, auroraCanvas);
+
+}
+
+function showPosterizedAuroraForecast(element) {
+    console.log('bye');
+    const p = document.getElementById('aurora-display');
+    p.replaceChildren(auroraCanvas)
+}
