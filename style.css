@@ -42,19 +42,29 @@ body {
     background-color: var(--background-color);
     font-family: monospace;
     color: var(--text-color);
-    text-shadow: 0px 0px 3px #af8023;
+    text-shadow: 0px 0px 2px var(--yellow2);
+    height: 100%;
 }
 
 
 a {
+    font-size: inherit;
     color: var(--text-color);
 }
 
 #center-piece {
     font-size: 90px;
+    /* margin: auto; */
+    /* width: 50%; */
+    /* text-align: center; */
 }
 
 #content {
+    /* height: 100%; */
+    /* margin: auto; */
+
+    vertical-align: middle;
+    /* align-items: center; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -64,22 +74,52 @@ a {
 
 #sites {
     grid-area: sites;
+    border-color:#cc241d;
+}
+
+.folder {
+    font-size: 20px;
+    margin-bottom: 1em;
+}
+
+.linked {
+    font-size: 15px;
+    margin-left: 20px;
+}
+.link a {
+    color: var(--blue2);
+    text-shadow: 0px 0px 2px var(--yellow1);
+
+    /* font-size: 20px; */
 }
 
 #aurora-panel {
     grid-area: aurora-panel;
-    /* outline-color: #F00; */
+    display: flex;
+    /* align-items: center; */
+    max-height: 300px;
 }
-#aurora-panel a {}
+
+#aurora-forecast {
+    /* min-size: 300px 300px; */
+    /* min-width: 300px; */
+    width: 100%;
+    display: inline-block;
+    height: auto;
+    /* margin-right: 10px; */
+    /* vertical-align: middle; */
+    overflow: scroll;
+
+}
 #aurora-display {
     max-width: 300px;
     max-height: 300px;
 
-    display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
+
 #aurora-display img {
     width: 100%;
 }
