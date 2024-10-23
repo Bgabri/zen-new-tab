@@ -54,7 +54,6 @@ body {
     height: 100%;
 }
 
-
 a {
     font-size: inherit;
     color: var(--text-color);
@@ -63,7 +62,9 @@ a {
 #center-piece {
     font-size: 90px;
     /* margin: auto; */
-    /* width: 50%; */
+    /* width: 100%; */
+
+    /* height: 100%; */
     /* text-align: center; */
 }
 
@@ -74,10 +75,11 @@ a {
     vertical-align: middle;
     align-items: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.9fr 1fr;
     grid-template-areas:
-        'sites aurora-panel'
-        'sites weather-panel';
+    'sites aurora-panel'
+    'sites weather-panel'
+    ;
 }
 
 #sites {
@@ -144,13 +146,16 @@ a {
 #aurora-forecast {
     /* min-size: 300px 300px; */
     /* min-width: 300px; */
-    width: 100%;
-    display: inline-block;
-    height: auto;
+    /* width: 100%; */
+
+    /* height: 100%; */
     /* margin-right: 10px; */
     /* vertical-align: middle; */
+    margin: 5px;
+    /* padding: 10px; */
     overflow: scroll;
-
+    text-wrap: wrap;
+    font-size: small;
 }
 
 #aurora-display {
@@ -159,7 +164,6 @@ a {
 
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
 #aurora-display img {
@@ -177,5 +181,6 @@ a {
 
 #weather-panel {
     grid-area: weather-panel;
-    max-width: 450px;
+    /* align-items: center; */
+    max-width: 440px;
 }
