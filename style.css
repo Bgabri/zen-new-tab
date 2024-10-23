@@ -68,7 +68,28 @@ a {
 
 #aurora-panel {
     grid-area: aurora-panel;
-    outline-color: #F00;
+    /* outline-color: #F00; */
+}
+#aurora-panel a {}
+#aurora-display {
+    max-width: 300px;
+    max-height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#aurora-display img {
+    width: 100%;
+}
+#aurora-display canvas {
+    width: 100%;
+}
+
+
+#aurora-forcast {
+    text-wrap-mode: wrap;
 }
 
 #weather-panel {

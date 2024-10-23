@@ -57,8 +57,12 @@
             5
         </div>
         <div id="aurora-panel">
-            <iframe src="https://services.swpc.noaa.gov/text/3-day-forecast.txt"></iframe>
-            <!-- <img src="https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg"> -->
+            <a href="https://www.swpc.noaa.gov/communities/aurora-dashboard-experimental">
+                <div id="aurora-display">
+                    <img id="aurora-img" crossOrigin="anonymous" src="https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg">
+                </div>
+                <pre id="aurora-forecast">loading aurora forecast</pre>
+            </a>
         </div>
         <div id="weather-panel">
             <a class="weatherwidget-io" href="https://forecast7.com/en/3d16101d71/federal-territory-of-kuala-lumpur/"
@@ -84,7 +88,7 @@
 
             data-raincolor="#83a598" 
             data-snowcolor="#ebdbb2"
-            >weather in kl</a>
+            >loading kl weather forecast</a>
         </div>
 
     </div>
