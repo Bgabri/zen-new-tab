@@ -10,14 +10,20 @@
     --fg0: #fbf1c7;
     --fg1: #ebdbb2;
     --fg2: #d5c4a1;
+    /* filter: invert(86%) sepia(33%) saturate(240%) hue-rotate(358deg) brightness(88%) contrast(89%); */
     --fg3: #bdae93;
     --fg4: #a89984;
     --red1: #cc241d;
+    /* filter: invert(18%) sepia(64%) saturate(2183%) hue-rotate(340deg) brightness(123%) contrast(111%); */
     --red2: #fb4934;
+    /* filter: invert(32%) sepia(23%) saturate(4832%) hue-rotate(340deg) brightness(114%) contrast(97%); */
     --green1: #98971a;
     --green2: #b8bb26;
+    /* filter: invert(79%) sepia(64%) saturate(570%) hue-rotate(9deg) brightness(88%) contrast(81%); */
     --yellow1: #d79921;
+    /* filter: invert(65%) sepia(99%) saturate(778%) hue-rotate(350deg) brightness(91%) contrast(83%); */
     --yellow2: #fabd2f;
+    /* filter: invert(82%) sepia(99%) saturate(5378%) hue-rotate(328deg) brightness(100%) contrast(96%); */
     --blue1: #458588;
     --blue2: #83a598;
     --purple1: #b16286;
@@ -25,7 +31,9 @@
     --aqua1: #689d6a;
     --aqua2: #8ec07c;
     --orange1: #d65d0e;
+    /* filter: invert(39%) sepia(68%) saturate(2395%) hue-rotate(4deg) brightness(91%) contrast(89%); */
     --orange2: #fe8019;
+    /* filter: invert(54%) sepia(53%) saturate(1879%) hue-rotate(349deg) brightness(102%) contrast(99%); */
 
     --background-color: var(--bg0-h);
     /* --background-color: #FF00;     */
@@ -64,7 +72,7 @@ a {
     /* margin: auto; */
 
     vertical-align: middle;
-    /* align-items: center; */
+    align-items: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -74,7 +82,6 @@ a {
 
 #sites {
     grid-area: sites;
-    border-color:#cc241d;
 }
 
 .folder {
@@ -83,13 +90,47 @@ a {
 }
 
 .linked {
+    display: flex;
+    flex-direction: row;
     font-size: 15px;
     margin-left: 20px;
 }
+
+.link {
+
+    padding: 10px;
+    width: 100px;
+    height: 123px;
+    /* content: center; */
+    align-items: center;
+    text-align: center;
+    margin: 3px;
+    overflow: hidden;
+
+    background-color: var(--bg0);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--background-color);
+}
+
+.link:hover {
+    border-color: var(--fg3);
+    border-style: solid;
+    /* border-style: ; */
+}
+
+.link img {
+    width: 100%;
+    /* height: 100%; */
+    /* height: 100px; */
+    /* max-height: 100px; */
+}
+
 .link a {
+    /* flex: auto; */
     color: var(--blue2);
     text-shadow: 0px 0px 2px var(--yellow1);
-
+    /* padding-top: 100%; */
     /* font-size: 20px; */
 }
 
@@ -111,6 +152,7 @@ a {
     overflow: scroll;
 
 }
+
 #aurora-display {
     max-width: 300px;
     max-height: 300px;
@@ -123,6 +165,7 @@ a {
 #aurora-display img {
     width: 100%;
 }
+
 #aurora-display canvas {
     width: 100%;
 }
