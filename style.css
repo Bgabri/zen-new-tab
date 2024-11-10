@@ -48,6 +48,7 @@ body {
 a {
     font-size: inherit;
     color: var(--text-color);
+    text-decoration-line: none;
 }
 
 #center-piece {
