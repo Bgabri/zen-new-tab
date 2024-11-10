@@ -10,20 +10,14 @@
     --fg0: #fbf1c7;
     --fg1: #ebdbb2;
     --fg2: #d5c4a1;
-    /* filter: invert(86%) sepia(33%) saturate(240%) hue-rotate(358deg) brightness(88%) contrast(89%); */
     --fg3: #bdae93;
     --fg4: #a89984;
     --red1: #cc241d;
-    /* filter: invert(18%) sepia(64%) saturate(2183%) hue-rotate(340deg) brightness(123%) contrast(111%); */
     --red2: #fb4934;
-    /* filter: invert(32%) sepia(23%) saturate(4832%) hue-rotate(340deg) brightness(114%) contrast(97%); */
     --green1: #98971a;
     --green2: #b8bb26;
-    /* filter: invert(79%) sepia(64%) saturate(570%) hue-rotate(9deg) brightness(88%) contrast(81%); */
     --yellow1: #d79921;
-    /* filter: invert(65%) sepia(99%) saturate(778%) hue-rotate(350deg) brightness(91%) contrast(83%); */
     --yellow2: #fabd2f;
-    /* filter: invert(82%) sepia(99%) saturate(5378%) hue-rotate(328deg) brightness(100%) contrast(96%); */
     --blue1: #458588;
     --blue2: #83a598;
     --purple1: #b16286;
@@ -31,9 +25,7 @@
     --aqua1: #689d6a;
     --aqua2: #8ec07c;
     --orange1: #d65d0e;
-    /* filter: invert(39%) sepia(68%) saturate(2395%) hue-rotate(4deg) brightness(91%) contrast(89%); */
     --orange2: #fe8019;
-    /* filter: invert(54%) sepia(53%) saturate(1879%) hue-rotate(349deg) brightness(102%) contrast(99%); */
 
     --background-color: var(--bg0-h);
     /* --background-color: #FF00;     */
@@ -43,7 +35,6 @@
     --weather-text-color: var(--fg1);
     --weather-text-accent-color: var(--fg1);
     --weather-sun-color: var(--yellow1);
-
 }
 
 body {
@@ -64,15 +55,13 @@ a {
 }
 
 #content {
-
     vertical-align: middle;
     align-items: center;
     display: grid;
     grid-template-columns: 0.9fr 1fr;
     grid-template-areas:
-    'sites aurora-panel'
-    'sites weather-panel'
-    ;
+        "sites aurora-panel"
+        "sites weather-panel";
 }
 
 #sites {
@@ -93,7 +82,6 @@ a {
 }
 
 .link {
-
     padding: 10px;
     width: 100px;
     height: 123px;
@@ -154,7 +142,6 @@ a {
 #aurora-display canvas {
     width: 100%;
 }
-
 
 #aurora-forcast {
     text-wrap-mode: wrap;

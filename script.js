@@ -1,29 +1,30 @@
-
-!function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
+!(function (d, s, id) {
+    var js,
+        fjs = d.getElementsByTagName(s)[0];
     if (!d.getElementById(id)) {
         js = d.createElement(s);
         js.id = id;
-        js.src = 'https://weatherwidget.io/js/widget.min.js';
+        js.src = "https://weatherwidget.io/js/widget.min.js";
         fjs.parentNode.insertBefore(js, fjs);
     }
-}(document, 'script', 'weatherwidget-io-js');
+})(document, "script", "weatherwidget-io-js");
 
-
-fetch('https://services.swpc.noaa.gov/text/3-day-forecast.txt')
-    .then(response => {
+fetch("https://services.swpc.noaa.gov/text/3-day-forecast.txt")
+    .then((response) => {
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error(
+                "Network response was not ok " + response.statusText,
+            );
         }
         return response.text();
     })
-    .then(data => {
-        document.getElementById('aurora-forecast').textContent = data;
+    .then((data) => {
+        document.getElementById("aurora-forecast").textContent = data;
     })
-    .catch(error => {
-        document.getElementById('aurora-forecast').textContent = 'Error fetching the forecast: ' + error.message;
+    .catch((error) => {
+        document.getElementById("aurora-forecast").textContent =
+            "Error fetching the forecast: " + error.message;
     });
-
 
 function colorDistance(c1, c2) {
     return (c1.r - c2.r) ** 2 + (c1.g - c2.g) ** 2 + (c1.b - c2.b) ** 2;
@@ -49,8 +50,10 @@ function distributeError(imageData, x, y, errR, errG, errB) {
         if (x >= 0 && x < imageData.width && y >= 0 && y < imageData.height) {
             let index = (y * imageData.width + x) * 4;
             imageData.data[index] = imageData.data[index] + errR * factor;
-            imageData.data[index + 1] = imageData.data[index + 1] + errG * factor;
-            imageData.data[index + 2] = imageData.data[index + 2] + errB * factor;
+            imageData.data[index + 1] =
+                imageData.data[index + 1] + errG * factor;
+            imageData.data[index + 2] =
+                imageData.data[index + 2] + errB * factor;
         }
     }
     // Floyd-Steinberg error distribution (right and below)
@@ -75,9 +78,7 @@ function quantize(imageData, palette) {
             imageData.data[index + 2] = c.b;
 
             // distributeError(imageData, x, y, r-c.r, g-c.g, b-c.b)
-
         }
-
     }
 
     return imageData;
@@ -113,11 +114,11 @@ window.onload = function () {
         { r: 104, g: 157, b: 106 },
         { r: 142, g: 192, b: 124 },
         { r: 214, g: 93, b: 14 },
-        { r: 254, g: 128, b: 25 }
+        { r: 254, g: 128, b: 25 },
     ];
-    auroraImg = document.getElementById('aurora-img');
-    auroraCanvas = document.createElement('canvas');
-    const ctx = auroraCanvas.getContext('2d');
+    auroraImg = document.getElementById("aurora-img");
+    auroraCanvas = document.createElement("canvas");
+    const ctx = auroraCanvas.getContext("2d");
     auroraCanvas.onmouseenter = showOriginalAuroraForecast;
     auroraImg.onmouseout = showPosterizedAuroraForecast;
     // auroraCanvas.onmouseout = auroraImgOver;
@@ -125,27 +126,29 @@ window.onload = function () {
     auroraCanvas.width = 800;
     auroraCanvas.height = 800;
     ctx.drawImage(auroraImg, 0, 0);
-    let imageData = ctx.getImageData(0, 0, auroraCanvas.width, auroraCanvas.height);
+    let imageData = ctx.getImageData(
+        0,
+        0,
+        auroraCanvas.width,
+        auroraCanvas.height,
+    );
 
     quantize(imageData, palette);
 
     auroraImg.parentNode.replaceChild(auroraCanvas, auroraImg);
     ctx.putImageData(imageData, 0, 0);
-
 };
-
 
 function showOriginalAuroraForecast(element) {
     // print('hi');
-    console.log('hi');
-    const p = document.getElementById('aurora-display');
-    p.replaceChildren(auroraImg)
+    console.log("hi");
+    const p = document.getElementById("aurora-display");
+    p.replaceChildren(auroraImg);
     // auroraCanvas.parentNode.replaceChild(auroraImg, auroraCanvas);
-
 }
 
 function showPosterizedAuroraForecast(element) {
-    console.log('bye');
-    const p = document.getElementById('aurora-display');
-    p.replaceChildren(auroraCanvas)
+    console.log("bye");
+    const p = document.getElementById("aurora-display");
+    p.replaceChildren(auroraCanvas);
 }
