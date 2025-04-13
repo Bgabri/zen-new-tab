@@ -6,12 +6,44 @@
     <link rel="icon" type="image/png" href="chrome://branding/content/icon32.png" />
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="script.js"></script>
+    <script>
+        let titleText = [
+            "Hello World!",
+            ":/",
+            ":)",
+            ":|",
+            "o/",
+            ":o",
+            "c:",
+            ".ᴖ.",
+            "˙~˙",
+            ".____________.",
+            "._.",
+            "T-T",
+            "x_x",
+            "(:|>",
+            "(:[>",
+            "(:[ⲒⲒ}",
+            "(:¬|@",
+            "(:[═══════════════",
+            "⁓═]¤}>",
+            "¤_¤",
+            "o_o",
+            "º-º",
+            "ºᴖº",
+        ]
+        window.onload = function () {
+            let index = Math.floor(Math.random() * titleText.length);
+            document.getElementById("center-piece").innerText = titleText[index];
+        }
+    </script>
 </head>
 
 <body>
     <div id="center-piece">
-        :/
     </div>
+    </br>
+    </br>
     <div id="content">
         <div id="sites">
             <div class="folder">
@@ -83,12 +115,12 @@
             <pre id="aurora-forecast">loading aurora forecast</pre>
         </div>
         <div id="weather-panel">
-            <a class="weatherwidget-io" href="https://forecast7.com/en/53d226d57/groningen/"
-                data-label_1="Groningen" data-label_2="weather" data-font="Roboto" data-font="Roboto"
-                data-icons="Climacons" data-days="3" data-theme="salmon" data-basecolor="#1d2021"
-                data-textcolor="#fbf1c7" data-accent="#0000" data-highcolor=#fbf1c7 data-lowcolor=#928374
-                data-suncolor="#fabd2f" data-mooncolor="#928374" data-cloudcolor="#bdae93" data-cloudfill="#bdae93"
-                data-raincolor="#83a598" data-snowcolor="#ebdbb2">loading kl weather forecast</a>
+            <a class="weatherwidget-io" href="https://forecast7.com/en/53d226d57/groningen/" data-label_1="Groningen"
+                data-label_2="weather" data-font="Roboto" data-font="Roboto" data-icons="Climacons" data-days="3"
+                data-theme="salmon" data-basecolor="#1d2021" data-textcolor="#fbf1c7" data-accent="#0000"
+                data-highcolor=#fbf1c7 data-lowcolor=#928374 data-suncolor="#fabd2f" data-mooncolor="#928374"
+                data-cloudcolor="#bdae93" data-cloudfill="#bdae93" data-raincolor="#83a598"
+                data-snowcolor="#ebdbb2">loading kl weather forecast</a>
         </div>
 
     </div>
