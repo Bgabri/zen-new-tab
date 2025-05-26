@@ -1,3 +1,59 @@
+const titleText = [
+    "Hello World!",
+    ":/",
+    ":)",
+    ":|",
+    "o/",
+    ":o",
+    "c:",
+    ".ᴖ.",
+    "˙~˙",
+    ".____________.",
+    "._.",
+    "T-T",
+    "x_x",
+    "(:|>",
+    "(:[>",
+    "(:[ⲒⲒ}",
+    "(:¬|@",
+    "(:[═══════════════",
+    "⁓═]¤}>",
+    "¤_¤",
+    "o_o",
+    "º-º",
+    "ºᴖº",
+];
+
+const palette = [
+    { r: 29, g: 32, b: 33 },
+    { r: 40, g: 40, b: 40 },
+    { r: 50, g: 48, b: 47 },
+    { r: 60, g: 56, b: 54 },
+    { r: 80, g: 73, b: 69 },
+    { r: 102, g: 92, b: 84 },
+    { r: 124, g: 111, b: 100 },
+    { r: 146, g: 131, b: 116 },
+    { r: 251, g: 241, b: 199 },
+    { r: 235, g: 219, b: 178 },
+    { r: 213, g: 196, b: 161 },
+    { r: 189, g: 174, b: 147 },
+    { r: 168, g: 153, b: 132 },
+    { r: 204, g: 36, b: 29 },
+    { r: 251, g: 73, b: 52 },
+    { r: 152, g: 151, b: 26 },
+    { r: 184, g: 187, b: 38 },
+    { r: 215, g: 153, b: 33 },
+    { r: 250, g: 189, b: 47 },
+    { r: 69, g: 133, b: 136 },
+    { r: 131, g: 165, b: 152 },
+    { r: 177, g: 98, b: 134 },
+    { r: 211, g: 134, b: 155 },
+    { r: 104, g: 157, b: 106 },
+    { r: 142, g: 192, b: 124 },
+    { r: 214, g: 93, b: 14 },
+    { r: 254, g: 128, b: 25 },
+];
+
 !(function (d, s, id) {
     var js,
         fjs = d.getElementsByTagName(s)[0];
@@ -83,39 +139,15 @@ function quantize(imageData, palette) {
 
     return imageData;
 }
+
 let auroraImg;
 let auroraCanvas;
 
 window.onload = function () {
-    const palette = [
-        { r: 29, g: 32, b: 33 },
-        { r: 40, g: 40, b: 40 },
-        { r: 50, g: 48, b: 47 },
-        { r: 60, g: 56, b: 54 },
-        { r: 80, g: 73, b: 69 },
-        { r: 102, g: 92, b: 84 },
-        { r: 124, g: 111, b: 100 },
-        { r: 146, g: 131, b: 116 },
-        { r: 251, g: 241, b: 199 },
-        { r: 235, g: 219, b: 178 },
-        { r: 213, g: 196, b: 161 },
-        { r: 189, g: 174, b: 147 },
-        { r: 168, g: 153, b: 132 },
-        { r: 204, g: 36, b: 29 },
-        { r: 251, g: 73, b: 52 },
-        { r: 152, g: 151, b: 26 },
-        { r: 184, g: 187, b: 38 },
-        { r: 215, g: 153, b: 33 },
-        { r: 250, g: 189, b: 47 },
-        { r: 69, g: 133, b: 136 },
-        { r: 131, g: 165, b: 152 },
-        { r: 177, g: 98, b: 134 },
-        { r: 211, g: 134, b: 155 },
-        { r: 104, g: 157, b: 106 },
-        { r: 142, g: 192, b: 124 },
-        { r: 214, g: 93, b: 14 },
-        { r: 254, g: 128, b: 25 },
-    ];
+
+    let index = Math.floor(Math.random() * titleText.length);
+    document.getElementById("center-piece").innerText = titleText[index];
+
     auroraImg = document.getElementById("aurora-img");
     auroraCanvas = document.createElement("canvas");
     const ctx = auroraCanvas.getContext("2d");
