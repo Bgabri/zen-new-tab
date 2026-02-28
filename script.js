@@ -119,7 +119,43 @@ function distributeError(imageData, x, y, errR, errG, errB) {
     applyError(x + 1, y + 1, 1 / 16);
 }
 
+
 function quantize(imageData, palette) {
+    // 4x4 Bayer matrix (values 0..15)
+
+    const bayer2 = [
+        [0, 2],
+        [3, 1],
+    ];
+    const bayer4 = [
+        [0, 8, 2, 10],
+        [12, 4, 14, 6],
+        [3, 11, 1, 9],
+        [15, 7, 13, 5],
+    ];
+
+    const bayer8 = [
+        [0, 32, 8, 40, 2, 34, 10, 42],
+        [48, 16, 56, 24, 50, 18, 58, 26],
+        [12, 44, 4, 36, 14, 46, 6, 38],
+        [60, 28, 52, 20, 62, 30, 54, 22],
+        [3, 35, 11, 43, 1, 33, 9, 41],
+        [51, 19, 59, 27, 49, 17, 57, 25],
+        [15, 47, 7, 39, 13, 45, 5, 37],
+        [63, 31, 55, 23, 61, 29, 53, 21],
+    ];
+
+
+    const bayer = bayer4;
+    const bayerSize = bayer.length;
+
+    // amplitude controls how strong the dither perturbation is
+    const amplitude = 48;
+
+    function clamp(v, a = 0, b = 255) {
+        return Math.max(a, Math.min(b, v));
+    }
+
     for (let y = 0; y < imageData.height; y++) {
         for (let x = 0; x < imageData.width; x++) {
             let index = (y * imageData.width + x) * 4;
@@ -127,16 +163,23 @@ function quantize(imageData, palette) {
             let g = imageData.data[index + 1];
             let b = imageData.data[index + 2];
 
-            let c = findClosestPaletteColor(r, g, b, palette);
+            const bv = bayer[y % bayerSize][x % bayerSize];
+            // normalized to [-0.5, +0.5)
+            const t = (bv + 0.5) / (bayerSize * bayerSize) - 0.5;
+
+            // apply ordered dither perturbation per channel, then clamp
+            const rAdj = clamp(Math.round(r + t * amplitude));
+            const gAdj = clamp(Math.round(g + t * amplitude));
+            const bAdj = clamp(Math.round(b + t * amplitude));
+
+            let c = findClosestPaletteColor(rAdj, gAdj, bAdj, palette);
 
             imageData.data[index] = c.r;
             imageData.data[index + 1] = c.g;
             imageData.data[index + 2] = c.b;
-
-            // distributeError(imageData, x, y, r-c.r, g-c.g, b-c.b)
+            // preserve alpha
         }
     }
-
     return imageData;
 }
 
@@ -144,7 +187,6 @@ let auroraImg;
 let auroraCanvas;
 
 window.onload = function () {
-
     let index = Math.floor(Math.random() * titleText.length);
     document.getElementById("center-piece").innerText = titleText[index];
 
@@ -153,18 +195,24 @@ window.onload = function () {
     const ctx = auroraCanvas.getContext("2d");
     auroraCanvas.onmouseenter = showOriginalAuroraForecast;
     auroraImg.onmouseout = showPosterizedAuroraForecast;
-    // auroraCanvas.onmouseout = auroraImgOver;
 
-    auroraCanvas.width = 800;
-    auroraCanvas.height = 800;
-    ctx.drawImage(auroraImg, 0, 0);
-    let imageData = ctx.getImageData(
-        0,
-        0,
-        auroraCanvas.width,
-        auroraCanvas.height,
-    );
+    // Adjust canvas size to match the image's display size, accounting for DPI
+    const dpr = window.devicePixelRatio || 1;
+    auroraCanvas.width = auroraImg.naturalWidth * dpr;
+    auroraCanvas.height = auroraImg.naturalHeight * dpr;
+    auroraCanvas.style.width = `${auroraImg.naturalWidth}px`;
+    auroraCanvas.style.height = `${auroraImg.naturalHeight}px`;
 
+    // Ensure the canvas fits within the content and doesn't overlap
+    auroraCanvas.style.maxWidth = "100%";
+    auroraCanvas.style.height = "auto";
+    auroraCanvas.style.display = "block";
+    auroraCanvas.style.margin = "0 auto";
+
+    ctx.scale(dpr, dpr); // Scale the canvas context to match the DPI
+    ctx.drawImage(auroraImg, 0, 0, auroraImg.naturalWidth, auroraImg.naturalHeight);
+
+    let imageData = ctx.getImageData(0, 0, auroraCanvas.width, auroraCanvas.height);
     quantize(imageData, palette);
 
     auroraImg.parentNode.replaceChild(auroraCanvas, auroraImg);
