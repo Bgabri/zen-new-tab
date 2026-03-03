@@ -75,6 +75,10 @@ fetch("https://services.swpc.noaa.gov/text/3-day-forecast.txt")
         return response.text();
     })
     .then((data) => {
+        data = data
+            .split("\n")
+            .filter((line) => !line.trimStart().startsWith("#"))
+            .join("\n");
         document.getElementById("aurora-forecast").textContent = data;
     })
     .catch((error) => {
